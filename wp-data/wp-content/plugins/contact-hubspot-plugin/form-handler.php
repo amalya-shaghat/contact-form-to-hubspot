@@ -9,7 +9,7 @@ function send_mail_notification($email, $subject, $message) {
 }
 
 function create_hubspot_contact($email, $first_name, $last_name) {
-    $token = '';
+    $token = getenv('HUBSPOT_TOKEN');
     $url = 'https://api.hubapi.com/crm/v3/objects/contacts';
 
     $data = [
