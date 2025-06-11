@@ -1,0 +1,110 @@
+# WordPress Full-Stack Test Task
+
+## Project Overview
+
+This project is a WordPress environment configured via Docker Compose. It includes:
+
+* A custom WordPress theme based on a provided Marvel Figma design.
+* A custom WordPress plugin that adds a "Contact us" form with integration to HubSpot and email notifications.
+* Proper logging, validation, and error handling.
+
+---
+
+## Installation Instructions
+
+1. **Clone the Repository**
+
+```bash
+git clone <repository-url>
+cd <repository-directory>
+```
+
+2. **Start the Docker Containers**
+
+```bash
+docker-compose up -d
+```
+
+3. **Access Services**
+
+* WordPress: [http://localhost:8082](http://localhost:8082)
+* phpMyAdmin: [http://localhost:8081](http://localhost:8081)
+
+---
+
+## WordPress Theme
+
+* Location: `wp-data/wp-content/themes/marvel-power-group`
+* Description: Custom theme built based on the Figma design for Marvel. All HTML and CSS is structured to match the layout and styling.
+
+---
+
+## Custom Plugin: `contact-hubspot`
+
+### Location
+
+`wp-data/wp-content/plugins/contact-hubspot-plugin`
+
+### Functionality
+
+* Renders a form with the following fields:
+
+  * Name (text)
+  * E-mail (email)
+* Validates the email format.
+* On submit:
+
+  * Sends an email notification (to be configured in plugin settings).
+  * Creates a contact in HubSpot.
+  * Shows success/error messages.
+  * Logs message submission with email in a custom log file.
+
+### Setup Instructions
+
+1. Activate the plugin in the WordPress Admin Panel.
+2. Go to the plugin settings to configure:
+
+   * Notification email recipient
+   * HubSpot API key
+3. Use the shortcode `[contact_hubspot_form]` to display the form on any page or post.
+
+---
+
+## Logging
+
+* Logs are stored in the plugin's `logs/messages.log`
+* Each entry includes:
+
+  * Timestamp
+  * Email
+  * Status (success/fail)
+
+---
+
+## HubSpot Integration
+
+* The plugin sends data via HubSpot's Contacts API.
+* Required environment variables or settings:
+
+  * HubSpot API Key (stored in plugin options)
+
+---
+
+## Time Tracking
+
+* Development time: *\[Specify actual time taken here]* hours
+
+---
+
+## Notes
+
+* Email format is validated before submission.
+* Proper error messages are shown if submission fails.
+* No third-party form or plugin is used; all functionality is coded inside the plugin.
+
+---
+
+## Author
+
+**Amalya**
+Full-Stack WordPress Developer
